@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benutzerseite - Dreikirchen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Willkommen, Benutzer!</h1>
+    </header>
+
+    <main>
+        <section class="user-section">
+            <h2>Benutzer-Dashboard</h2>
+            <p>Willkommen auf Ihrer persönlichen Seite. Hier haben Sie Zugang zu speziellen Inhalten und Funktionen.</p>
+            <ul>
+                <li><a href="benutzer_infos.html">Benutzer-Informationen</a></li>
+                <li><a href="besondere_angebote.html">Besondere Angebote</a></li>
+            </ul>
+            <button onclick="logout()">Abmelden</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Danke für Ihren Besuch auf der Dreikirchen-Benutzerseite!</p>
+    </footer>
+
+    <script>
+        function logout() {
+            alert("Sie haben sich abgemeldet.");
+            window.location.href = "index.html"; // Zurück zur Login-Seite
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dreikirchen - Offizielle Webseite</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Bestehende Stile */
+        .calendar-container {
+            max-width: 320px;
+            margin: 30px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: center;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calendar-day, .calendar-header-day {
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        .today {
+            background-color: #cce5ff;
+            font-weight: bold;
+        }
+        .event-day {
+            background-color: #ffcccb;
+        }
+        .event-info {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #333;
+        }
+        .sights-container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .sights-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .sights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .sight-item {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .sight-item h3 {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .Mehr-Lesen {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .header-title {
+            background-image: url("WhatsApp Bild 2024-11-02 um 17.20.53_2b959e2c.jpg");
+        }
+        .login-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .login-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Zusätzliche Funktionen für eingeloggte Gäste */
+        .guest-features {
+            display: none; /* Verstecke die Features standardmäßig */
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e8f8ff;
+            color: #333;
+            text-align: center;
+        }
+        .Login {
+            grid: 80px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Dreikirchen</h1>
+        <!-- Einloggen Button -->
+        <a class="Login" href="Login.html"><button>Einloggen</button></a>
+        <!-- Navigation toggle button for smaller screens -->
+        <button class="nav-toggle" onclick="toggleNav()">☰ Menü</button>
+    </header>
+
+    <nav id="navbar" class="navbar">
+        <a href="infos.html" class="nav-link">Infos</a>
+        <a href="Ortsplan.html" class="nav-link">Ortsplan</a>
+        <a href="Sehenswürdigkeiten.html" class="nav-link">Sehenswürdigkeiten</a>
+        <a href="Geschichte.html" class="nav-link">Geschichte von Dreikirchen</a>
+    </nav>
+
+    <div class="sights-grid">
+        <!-- Sehenswürdigkeit 1 -->
+        <div class="sight-item">
+            <h3>Westerwälder Seenplatte</h3>
+            <img src="Download.jpeg" alt="" class="highlight-image">
+            <p>Ein Naturschutzgebiet mit malerischen Seen und Wanderwegen, ideal für Naturliebhaber und Vogelbeobachter.</p>
+            <p>Entfernung: etwa 15 Minuten mit dem Auto</p>
+        </div>
+        <!-- Sehenswürdigkeit 2 -->
+        <div class="sight-item">
+            <h3>Limburg an der Lahn</h3>
+            <img src="Limburg an der Lahn.jpeg" alt="" class="highlight-image">
+            <p>Besuchen Sie den historischen Limburger Dom und die charmante Altstadt mit ihren Fachwerkhäusern.</p>
+            <p>Entfernung: etwa 10–15 Minuten mit dem Auto</p>
+        </div>
+    </div>
+
+    <div class="Mehr-Lesen">
+        <a href="Sehenswürdigkeiten.html"><button>Mehr Sehenswürdigkeiten</button></a>
+    </div>
+
+    <section class="calendar-container">
+        <div class="calendar-header">
+            <button onclick="prevMonth()">«</button>
+            <h2 id="calendar-month-year"></h2>
+            <button onclick="nextMonth()">»</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+        <div class="event-info" id="event-info">Klicken Sie auf einen Tag mit Event, um Details anzuzeigen.</div>
+    </section>
+
+    <!-- Zusätzliche Inhalte und Funktionen für eingeloggte Gäste -->
+    <section class="guest-features">
+        <h2>Exklusive Funktionen für Gäste</h2>
+        <p>Willkommen, Gast! Hier sind einige spezielle Funktionen nur für Sie verfügbar:</p>
+        <ul>
+            <li>Zugang zu exklusiven Veranstaltungshinweisen</li>
+            <li>Extra-Sehenswürdigkeiten in der Umgebung</li>
+            <li>Besondere Angebote und Rabatte für Besucher</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Besuchen Sie Dreikirchen und erleben Sie die Vielfalt seiner Sehenswürdigkeiten und die Schönheit des Westerwaldes!</p>
+    </footer>
+
+    <script>
+        let isGuest = false;
+
+        // Funktion zum Einloggen als Gast
+        function loginAsGuest() {
+            isGuest = true;
+            document.querySelector(".login-button").style.display = "none";
+            document.querySelector(".guest-features").style.display = "block";
+            alert("Sie sind nun als Gast eingeloggt und haben Zugang zu zusätzlichen Funktionen!");
+        }
+
+        function toggleNav() {
+            var navbar = document.getElementById("navbar");
+            if (navbar.style.display === "flex") {
+                navbar.style.display = "none";
+            } else {
+                navbar.style.display = "flex";
+            }
+        }
+
+        const calendarGrid = document.getElementById("calendar-grid");
+        const monthYearDisplay = document.getElementById("calendar-month-year");
+        const eventInfo = document.getElementById("event-info");
+        let currentDate = new Date();
+
+        const events = [
+            { date: "2024-11-09", description: "St. Martin Fest 2024" },
+        ];
+
+        function renderCalendar() {
+            const month = currentDate.getMonth();
+            const year = currentDate.getFullYear();
+            monthYearDisplay.textContent = currentDate.toLocaleString("de-DE", { month: "long", year: "numeric" });
+
+            calendarGrid.innerHTML = "";
+            const daysOfWeek = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+            daysOfWeek.forEach(day => {
+                const headerDay = document.createElement("div");
+                headerDay.className = "calendar-header-day";
+                headerDay.textContent = day;
+                calendarGrid.appendChild(headerDay);
+            });
+
+            const firstDayOfMonth = (new Date(year, month, 1).getDay() + 6) % 7;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyCell = document.createElement("div");
+                emptyCell.classList.add("calendar-day");
+                calendarGrid.appendChild(emptyCell);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement("div");
+                dayCell.classList.add("calendar-day");
+                dayCell.textContent = day;
+
+                if (day === new Date().getDate() &&
+                    month === new Date().getMonth() &&
+                    year === new Date().getFullYear()) {
+                    dayCell.classList.add("today");
+                }
+
+                const eventDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const event = events.find(e => e.date === eventDate);
+                if (event) {
+                    dayCell.classList.add("event-day");
+                    dayCell.onclick = () => showEvent(event.description);
+                } else {
+                    dayCell.onclick = () => eventInfo.textContent = "Kein Event an diesem Tag.";
+                }
+
+                calendarGrid.appendChild(dayCell);
+            }
+        }
+
+        function showEvent(description) {
+            eventInfo.textContent = `Event: ${description}`;
+        }
+
+        function prevMonth() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        }
+
+        renderCalendar();
+    </script>
+</body>
+</html>

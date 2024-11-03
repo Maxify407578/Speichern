@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nachricht senden - Dreikirchen</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- EmailJS SDK einbinden -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // EmailJS mit deiner Benutzer-ID initialisieren
+        (function() {
+            emailjs.init("gujzx7hF_Xo8XTtiy");
+        })();
+
+        function sendEmail() {
+            const message = document.getElementById("message").value;
+            const templateParams = {
+                to_email: "maxschueller11@gmail.com",
+                message: message
+            };
+
+            emailjs.send('service_0xg8d0u', 'template_rma27or', templateParams)
+                .then(function(response) {
+                    alert('Nachricht erfolgreich gesendet! ' + response.status);
+                }, function(error) {
+                    alert('Fehler beim Senden der Nachricht: ' + error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Nachricht senden</h1>
+    </header>
+
+    <main>
+        <section class="message-section">
+            <h2>Ihre Nachricht</h2>
+            <textarea id="message" rows="10" placeholder="Schreiben Sie Ihre Nachricht hier..."></textarea>
+            <br>
+            <button onclick="sendEmail()">Senden</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Danke für Ihren Besuch auf der Dreikirchen-Nachrichtenseite!</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Dreikirchen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container button {
+            padding: 10px;
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #2980b9;
+        }
+           /* Bestehende Stile */
+           .calendar-container {
+            max-width: 320px;
+            margin: 30px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: center;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calendar-day, .calendar-header-day {
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        .today {
+            background-color: #cce5ff;
+            font-weight: bold;
+        }
+        .event-day {
+            background-color: #ffcccb;
+        }
+        .event-info {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #333;
+        }
+        .sights-container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .sights-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .sights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .sight-item {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .sight-item h3 {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        .Mehr-Lesen {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .header-title {
+            background-image: url("WhatsApp Bild 2024-11-02 um 17.20.53_2b959e2c.jpg");
+        }
+        .login-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .login-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Zusätzliche Funktionen für eingeloggte Gäste */
+        .guest-features {
+            display: none; /* Verstecke die Features standardmäßig */
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e8f8ff;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a class="Zurück" href="index.html"><button>Zurück</button></a>
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Benutzername" required>
+        <input type="password" id="password" placeholder="Passwort" required>
+        <button onclick="login()">Einloggen</button>
+        <p id="error-message" style="color: red;"></p>
+        <a href="javascript:void(0);" onclick="loginAsGuest()"><button class="login-button">Einloggen als Gast</button></a>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (username === 'Admin' && password === 'Admin123') {
+                window.location.href = 'admin.html'; // Weiterleitung zur Admin-Seite
+            } else {
+                errorMessage.textContent = 'Benutzername oder Passwort ist falsch.';
+            }
+            if (username === 'Guest' && password === 'Guest1234') {
+                window.location.href = 'Benutzer.html'; // Weiterleitung zur Admin-Seite
+            } else {
+                errorMessage.textContent = 'Benutzername oder Passwort ist falsch.';
+            }
+            function loginAsGuest() {
+            isGuest = true;
+            document.querySelector(".login-button").style.display = "none";
+            document.querySelector(".guest-features").style.display = "block";
+            alert("Sie sind nun als Gast eingeloggt und haben Zugang zu zusätzlichen Funktionen!");
+        }
+        }
+        
+    </script>
+</body>
+</html>

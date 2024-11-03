@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil bearbeiten - Chat System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .profile-container {
+            width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .profile-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3498db;
+            margin-bottom: 15px;
+        }
+        .profile-image-placeholder {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 2px solid #3498db;
+            margin-bottom: 15px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .upload-btn {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+        .save-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .save-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <h2>Profil bearbeiten</h2>
+    <div id="profileImageContainer">
+        <span class="profile-image-placeholder" id="profilePlaceholder">+</span>
+        <img src="" alt="Profilbild" id="profileImage" class="profile-image" style="display: none;">
+    </div>
+    <input type="file" id="profileImageInput" accept="image/*" class="upload-btn" onchange="loadProfileImage(event)">
+    
+    <input type="text" id="username" placeholder="Benutzername" class="input-field">
+    <input type="text" id="displayName" placeholder="Anzeigename" class="input-field">
+
+    <button class="save-btn" onclick="saveProfile()">Profil speichern</button>
+</div>
+
+<script>
+    // Funktion zum Laden und Anzeigen des Profilbildes
+    function loadProfileImage(event) {
+        const image = document.getElementById('profileImage');
+        const placeholder = document.getElementById('profilePlaceholder');
+
+        const reader = new FileReader();
+        reader.onload = function() {
+            image.src = reader.result;
+            image.style.display = 'block';
+            placeholder.style.display = 'none'; // Placeholder ausblenden
+            // Speichern des Bildes im Local Storage
+            localStorage.setItem('profileImage', reader.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // Funktion zum Speichern des Profils
+    function saveProfile() {
+        const username = document.getElementById('username').value;
+        const displayName = document.getElementById('displayName').value;
+
+        if (!username || !displayName) {
+            alert('Bitte geben Sie sowohl Benutzername als auch Anzeigename ein.');
+            return;
+        }
+
+        // Speichern im Local Storage
+        localStorage.setItem('username', username);
+        localStorage.setItem('displayName', displayName);
+
+        alert('Profil wurde erfolgreich gespeichert.');
+    }
+
+    // Funktion zum Laden des Profils beim Seitenstart
+    function loadProfile() {
+        // Laden und Setzen des Profilbildes
+        const storedImage = localStorage.getItem('profileImage');
+        const image = document.getElementById('profileImage');
+        const placeholder = document.getElementById('profilePlaceholder');
+        if (storedImage) {
+            image.src = storedImage;
+            image.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+
+        // Laden und Setzen des Benutzernamens und Anzeigenamens
+        const storedUsername = localStorage.getItem('username');
+        const storedDisplayName = localStorage.getItem('displayName');
+        if (storedUsername) {
+            document.getElementById('username').value = storedUsername;
+        }
+        if (storedDisplayName) {
+            document.getElementById('displayName').value = storedDisplayName;
+        }
+    }
+
+    // Profil laden, wenn die Seite geladen wird
+    window.onload = loadProfile;
+</script>
+
+</body>
+</html>

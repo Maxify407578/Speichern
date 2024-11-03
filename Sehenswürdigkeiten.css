@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.header-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-top: 20px;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.sight {
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sight-title {
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.sight-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.sight-description {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 15px;
+}
+
+.footer-text {
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    background-color: #2c3e50;
+    color: #fff;
+}

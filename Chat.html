@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat-System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.chat-container {
+    width: 400px;
+    height: 500px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chat-header {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.chat-window {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-content {
+    background-color: #e1f5fe;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+#messageInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+</style>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Chat</h2>
+        </div>
+        <div class="chat-window" id="chatWindow"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Nachricht eingeben...">
+            <button onclick="sendMessage()">Senden</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Daten vom Local Storage abrufen
+        const profileImage = localStorage.getItem('profileImage');
+        const displayName = localStorage.getItem('displayName');
+
+        // Nachricht senden
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value;
+
+            if (message.trim()) {
+                socket.emit('chatMessage', {
+                    displayName: displayName || 'Anonym',
+                    profileImage: profileImage || '',
+                    message: message
+                });
+                messageInput.value = ''; // Eingabefeld leeren
+            }
+        }
+
+        // Nachricht empfangen und im Chat anzeigen
+        socket.on('chatMessage', (data) => {
+            displayMessage(data);
+        });
+
+        // Nachricht im Chatfenster anzeigen
+        function displayMessage(data) {
+            const chatWindow = document.getElementById('chatWindow');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+
+            messageElement.innerHTML = `
+                <img src="${data.profileImage || 'default-avatar.png'}" alt="Profilbild" class="profile-image">
+                <div class="message-content">
+                    <span class="username">${data.displayName || 'Anonym'}</span>
+                    <p>${data.message}</p>
+                </div>
+            `;
+
+            chatWindow.appendChild(messageElement);
+            chatWindow.scrollTop = chatWindow.scrollHeight; // Automatisches Scrollen
+        }
+    </script>
+</body>
+</html>

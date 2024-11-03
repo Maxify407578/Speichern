@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sehenswürdigkeiten in Dreikirchen</title>
+    <link rel="stylesheet" href="Sehenswürdigkeiten.css">
+</head>
+<style>
+    /* Kalender Styles */
+    .calendar-container {
+            max-width: 320px;
+            margin: 30px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: center;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calendar-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calendar-day, .calendar-header-day {
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .calendar-header-day {
+            font-weight: bold;
+            color: #3498db;
+        }
+        .calendar-day:hover {
+            background-color: #f0f0f0;
+        }
+        .today {
+            background-color: #cce5ff;
+            font-weight: bold;
+        }
+        .event-day {
+            background-color: #ffcccb;
+        }
+        .event-info {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Container für die Sehenswürdigkeiten-Liste */
+        .sights-container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Titel der Sehenswürdigkeiten */
+        .sights-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Styling für jede Sehenswürdigkeit */
+        .sight-item {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sight-item h3 {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .sight-description {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .sight-distance {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .Veranstaltungs-Termine  {
+             border: #333;
+            border-radius: 8px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Container für die Sehenswürdigkeiten-Liste */
+        .sights-container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Titel der Sehenswürdigkeiten */
+        .sights-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Grid für Sehenswürdigkeiten */
+        .sights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* Styling für jede Sehenswürdigkeit */
+        .sight-item {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sight-item h3 {
+            font-size: 1.5rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .sight-description {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .sight-distance {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Responsive Anpassung für kleinere Bildschirme */
+        @media (max-width: 600px) {
+            .sights-grid {
+                grid-template-columns: 1fr; /* Eine Spalte auf kleinen Bildschirmen */
+            }
+        }
+</style>
+<body>
+    
+    <a href="index.html"><button>Zurück</button></a>
+    <header>
+        <div class="sight-item">
+            <h3>Kloster Arnstein</h3>
+            <img src="Kloster Arnstein.jpeg" alt="" class="highlight-image">
+            <p class="sight-description">Ein historisches Kloster bei Obernhof, das Ruhe und eine schöne Aussicht auf die Lahn bietet.</p>
+            <p class="sight-distance">Entfernung: etwa 25 Minuten mit dem Auto</p>
+        </div>
+
+        <!-- Sehenswürdigkeit 4 -->
+        <div class="sight-item">
+            <h3>Schloss Oranienstein in Diez</h3>
+            <img src="Schloss Oranienstein in Diez.jpeg" alt="" class="highlight-image">
+            <p class="sight-description">Ein prächtiges Barockschloss, das interessante Einblicke in die Geschichte bietet.</p>
+            <p class="sight-distance">Entfernung: etwa 20 Minuten mit dem Auto</p>
+        </div>
+
+        <!-- Sehenswürdigkeit 5 -->
+        <div class="sight-item">
+            <h3>Hohe Burg Monschau bei Montabaur</h3>
+            <img src="Hohe Burg Monschau bei Montabaur.jpeg" alt="" class="highlight-image">
+            <p class="sight-description">Diese Burg bietet schöne Wandermöglichkeiten und ist ein beliebtes Fotomotiv.</p>
+            <p class="sight-distance">Entfernung: etwa 20 Minuten mit dem Auto</p>
+        </div>
+
+        <!-- Sehenswürdigkeit 6 -->
+        <div class="sight-item">
+            <h3>Naturpark Nassau</h3>
+            <img src="Naturpark Nassau.jpeg" alt="" class="highlight-image">
+            <p class="sight-description">Ein Naturpark mit Wander- und Radwegen, kleinen Bächen und vielen Aussichtspunkten.</p>
+            <p class="sight-distance">Entfernung: etwa 30 Minuten mit dem Auto</p>
+        </div>
+
+        <!-- Sehenswürdigkeit 7 -->
+        <div class="sight-item">
+            <h3>Stöffel-Park in Enspel</h3>
+            <img src="Stöffel-Park in Enspel.jpeg" alt="" class="highlight-image">
+            <p class="sight-description">Ein Industriepark und Geopark mit Fossilienfunden und Events zur Erdgeschichte.</p>
+            <p class="sight-distance">Entfernung: etwa 30 Minuten mit dem Auto</p>
+        </div>
+
+        <!-- Sehenswürdigkeit 8 -->
+        <div class="sight-item">
+            <h3>Wild- und Freizeitpark Westerwald in Gackenbach</h3>
+            <img src="wildpark.jpeg" alt="" class="highlight-image">
+            <p class="sight-description">Ein familienfreundlicher Park mit Wildgehegen, Spielplätzen und einem Streichelzoo.</p>
+            <p class="sight-distance">Entfernung: etwa 15 Minuten mit dem Auto</p>
+        </div>
+    </div>
+</div>
+    <footer>
+        <p class="footer-text">Besuchen Sie Dreikirchen und erleben Sie die Vielfalt seiner Sehenswürdigkeiten und die Schönheit des Westerwaldes!</p>
+    </footer>
+</body>
+</html>
